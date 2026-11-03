@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Birthday, My Love! ✨</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Floating Background Canvas for Stars & Hearts -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Audio Player Floating Widget -->
+  <div class="audio-control" id="audio-control" title="Putar Musik">
+    <button class="music-btn" id="music-btn" aria-label="Toggle Music">
+      <i class="fa-solid fa-music music-icon"></i>
+      <div class="music-wave" id="music-wave">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </button>
+    <!-- Background audio: Bisa diganti dengan lagu romantis favorit kalian di folder atau URL langsung -->
+    <audio id="bg-audio" loop preload="auto">
+      <source src="ASET/SONG/Billie Eilish - BIRDS OF A FEATHER (Official Music Video).mp3" type="audio/mp3">
+    </audio>
+  </div>
+
+  <!-- Navigation Dots (Slide 1 to 7) -->
+  <nav class="slider-dots" id="slider-dots" aria-label="Slide Indicator">
+    <button class="dot active" data-slide="0" title="Slide 1: Special Delivery"></button>
+    <button class="dot" data-slide="1" title="Slide 2: Happy Birthday"></button>
+    <button class="dot" data-slide="2" title="Slide 3: Our Memories"></button>
+    <button class="dot" data-slide="3" title="Slide 4: Why I Love You"></button>
+    <button class="dot" data-slide="4" title="Slide 5: Love Letter"></button>
+    <button class="dot" data-slide="5" title="Slide 6: Make a Wish"></button>
+    <button class="dot" data-slide="6" title="Slide 7: Forever & Always"></button>
+  </nav>
+
+  <!-- Top Progress Bar -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- Main Slides Container -->
+  <main class="slides-wrapper" id="slides-wrapper">
+
+    <!-- ==============================================
+         SLIDE 1: PEMBUKAAN (SPECIAL GIFT BOX & LETTER)
+         ============================================== -->
+    <section class="slide active" id="slide-1">
+      <div class="slide-content text-center">
+        <div class="tag-badge animate-pop">
+          <i class="fa-solid fa-sparkles"></i> Ada kejutan spesial untukmu
+        </div>
+
+        <h1 class="romantic-title">Haloo Sayangku...</h1>
+        <p class="subtitle">Hari ini adalah hari yang paling istimewa di dunia, karena seseorang yang sangat kucintai
+          bertambah usia.</p>
+
+        <!-- Interactive 3D Gift Box -->
+        <div class="gift-box-container" id="gift-box" onclick="openGift()">
+          <div class="gift-lid">
+            <div class="gift-ribbon-bow"></div>
+          </div>
+          <div class="gift-body">
+            <div class="gift-ribbon-vertical"></div>
+            <div class="gift-ribbon-horizontal"></div>
+          </div>
+          <div class="gift-glow"></div>
+        </div>
+
+        <p class="gift-instruction">
+          <i class="fa-solid fa-hand-pointer pulse-icon"></i> Sentuh kado ini untuk membuka kejutan
+        </p>
+
+        <button class="btn-romantic primary-btn mt-4" onclick="nextSlide()">
+          Buka Sekarang <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 2: UCAPAN "HAPPY BIRTHDAY MY LOVE"
+         ============================================== -->
+    <section class="slide" id="slide-2">
+      <div class="slide-content text-center">
+        <div class="crown-icon-wrapper">
+          <i class="fa-solid fa-crown crown-icon"></i>
+        </div>
+
+        <span class="birthday-tag">Special Birthday Wish</span>
+        <h2 class="birthday-main-title">Happy Birthday, My Love!</h2>
+        <h3 class="partner-name">✨ Enji ✨</h3>
+
+        <div class="glass-card quote-card">
+          <i class="fa-solid fa-quote-left quote-mark start"></i>
+          <p class="quote-text">
+            "Selamat ulang tahun untuk orang yang paling membuat hari-hariku penuh warna dan tawa. Terima kasih sudah
+            lahir ke dunia ini dan menjadi bagian terindah dalam hidupku. Semoga setiap langkahmu selalu dipenuhi
+            kebahagiaan yang tak pernah habis."
+          </p>
+          <i class="fa-solid fa-quote-right quote-mark end"></i>
+        </div>
+
+        <div class="badges-row">
+          <div class="mini-pill"><i class="fa-solid fa-heart"></i> My Favorite Person</div>
+          <div class="mini-pill"><i class="fa-solid fa-star"></i> My Brightest Star</div>
+          <div class="mini-pill"><i class="fa-solid fa-sun"></i> My Sweet Sunshine</div>
+        </div>
+
+        <div class="slide-nav-buttons">
+          <button class="btn-romantic ghost-btn" onclick="prevSlide()">
+            <i class="fa-solid fa-arrow-left"></i> Kembali
+          </button>
+          <button class="btn-romantic primary-btn" onclick="nextSlide()">
+            Lihat Kenangan Kita <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 3: FOTO KITA BERDUA (MEMORY GALLERY)
+         ============================================== -->
+    <section class="slide" id="slide-3">
+      <div class="slide-content">
+        <div class="text-center mb-4">
+          <span class="birthday-tag">Our Sweet Moments</span>
+          <h2 class="section-title">Memories of Us 📸</h2>
+          <p class="subtitle">Setiap detik bersamamu adalah cerita terbaik yang pernah kumiliki.</p>
+        </div>
+
+        <!-- Polaroid Photos Grid -->
+        <div class="polaroid-grid">
+          <!-- Photo 1 -->
+          <div class="polaroid-card tilt-left" onclick="expandPhoto(this)">
+            <div class="washi-tape"></div>
+            <div class="polaroid-img-box">
+              <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=800&auto=format&fit=crop"
+                alt="Memory 1" class="polaroid-img">
+            </div>
+            <div class="polaroid-caption">
+              <p class="handwritten">Hari pertama kita jalan bareng ☕</p>
+              <span class="photo-date"><i class="fa-regular fa-calendar-heart"></i> Always in my heart</span>
+            </div>
+          </div>
+
+          <!-- Photo 2 -->
+          <div class="polaroid-card tilt-right" onclick="expandPhoto(this)">
+            <div class="washi-tape"></div>
+            <div class="polaroid-img-box">
+              <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=800&auto=format&fit=crop"
+                alt="Memory 2" class="polaroid-img">
+            </div>
+            <div class="polaroid-caption">
+              <p class="handwritten">Senyummu yang selalu bikin jatuh cinta ✨</p>
+              <span class="photo-date"><i class="fa-regular fa-calendar-heart"></i> My happiest smile</span>
+            </div>
+          </div>
+
+          <!-- Photo 3 -->
+          <div class="polaroid-card tilt-left-sm" onclick="expandPhoto(this)">
+            <div class="washi-tape"></div>
+            <div class="polaroid-img-box">
+              <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=800&auto=format&fit=crop"
+                alt="Memory 3" class="polaroid-img">
+            </div>
+            <div class="polaroid-caption">
+              <p class="handwritten">Bergandengan tangan selamanya 🤍</p>
+              <span class="photo-date"><i class="fa-regular fa-calendar-heart"></i> Through thick & thin</span>
+            </div>
+          </div>
+
+          <!-- Photo 4 -->
+          <div class="polaroid-card tilt-right-sm" onclick="expandPhoto(this)">
+            <div class="washi-tape"></div>
+            <div class="polaroid-img-box">
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800&auto=format&fit=crop"
+                alt="Memory 4" class="polaroid-img">
+            </div>
+            <div class="polaroid-caption">
+              <p class="handwritten">Dan sejuta cerita indah lainnya 🌸</p>
+              <span class="photo-date"><i class="fa-regular fa-calendar-heart"></i> To many more years</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-center photo-hint">
+          <small><i class="fa-solid fa-lightbulb"></i> Klik foto untuk memperbesar • Kamu bisa ganti foto dengan fotomu
+            sendiri di file <code>index.html</code></small>
+        </p>
+
+        <div class="slide-nav-buttons mt-4">
+          <button class="btn-romantic ghost-btn" onclick="prevSlide()">
+            <i class="fa-solid fa-arrow-left"></i> Kembali
+          </button>
+          <button class="btn-romantic primary-btn" onclick="nextSlide()">
+            Alasan Aku Mencintaimu <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 4: REASONS WHY I LOVE YOU (INTERACTIVE CARDS)
+         ============================================== -->
+    <section class="slide" id="slide-4">
+      <div class="slide-content text-center">
+        <span class="birthday-tag">Things I Adore About You</span>
+        <h2 class="section-title">Why I Love You ❤️</h2>
+        <p class="subtitle">Dari ribuan alasan, ini beberapa hal kecil yang bikin aku jatuh cinta setiap hari.</p>
+
+        <div class="reasons-grid">
+          <!-- Card 1 -->
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-icon"><i class="fa-solid fa-face-smile-beam"></i></div>
+                <h4>Senyumanmu</h4>
+                <p class="tap-hint"><i class="fa-solid fa-arrow-pointer"></i> Sentuh untuk baca</p>
+              </div>
+              <div class="flip-card-back">
+                <p>Senyum dan tawamu selalu punya sihir untuk meredakan hariku yang paling melelahkan sekalipun.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-icon"><i class="fa-solid fa-heart-circle-bolt"></i></div>
+                <h4>Ketulusanmu</h4>
+                <p class="tap-hint"><i class="fa-solid fa-arrow-pointer"></i> Sentuh untuk baca</p>
+              </div>
+              <div class="flip-card-back">
+                <p>Hati dan perhatian tulus yang kamu berikan selalu membuatku merasa begitu berharga dan disayangi.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
+                <h4>Obrolan Kita</h4>
+                <p class="tap-hint"><i class="fa-solid fa-arrow-pointer"></i> Sentuh untuk baca</p>
+              </div>
+              <div class="flip-card-back">
+                <p>Mulai dari hal receh tak bermakna sampai masa depan impian kita, ngobrol sama kamu tak pernah
+                  membosankan.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-icon"><i class="fa-solid fa-house-chimney-heart"></i></div>
+                <h4>Rumah Terhangat</h4>
+                <p class="tap-hint"><i class="fa-solid fa-arrow-pointer"></i> Sentuh untuk baca</p>
+              </div>
+              <div class="flip-card-back">
+                <p>Bersamamu, aku bisa jadi diriku apa adanya tanpa takut dihakimi. Kamu adalah tempat ternyaman untuk
+                  pulang.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h4>Kesabaranmu</h4>
+                <p class="tap-hint"><i class="fa-solid fa-arrow-pointer"></i> Sentuh untuk baca</p>
+              </div>
+              <div class="flip-card-back">
+                <p>Caramu menenangkan dan memahami kelemahanku selalu membuatku ingin menjadi versi terbaik untukmu.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-icon"><i class="fa-solid fa-infinity"></i></div>
+                <h4>Semua Tentangmu</h4>
+                <p class="tap-hint"><i class="fa-solid fa-arrow-pointer"></i> Sentuh untuk baca</p>
+              </div>
+              <div class="flip-card-back">
+                <p>Karena bagiku, kamu tidak tergantikan. Mencintaimu adalah keputusan terbaik yang pernah kupilih.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-nav-buttons mt-4">
+          <button class="btn-romantic ghost-btn" onclick="prevSlide()">
+            <i class="fa-solid fa-arrow-left"></i> Kembali
+          </button>
+          <button class="btn-romantic primary-btn" onclick="nextSlide()">
+            Buka Surat Cintaku <i class="fa-solid fa-envelope"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 5: SURAT CINTA (UNFOLDING LOVE LETTER)
+         ============================================== -->
+    <section class="slide" id="slide-5">
+      <div class="slide-content text-center">
+        <span class="birthday-tag">Written Straight From The Heart</span>
+        <h2 class="section-title">Surat Cinta Untukmu 💌</h2>
+        <p class="subtitle">Buka amplop ini untuk membaca pesan yang tersimpan di hatiku.</p>
+
+        <!-- Interactive Envelope -->
+        <div class="envelope-container" id="envelope-wrapper" onclick="toggleLetter()">
+          <div class="envelope" id="envelope">
+            <div class="envelope-flap"></div>
+            <div class="wax-seal">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="letter-preview">
+              <div class="letter-paper" id="letter-paper">
+                <div class="letter-content-inner">
+                  <h3 class="letter-salutation">Untuk Sayangku yang Paling Cantik & Berharga,</h3>
+                  <p class="letter-paragraph">
+                    Selamat ulang tahun yang luar biasa ya! Di hari spesialmu ini, aku ingin mengucapkan terima kasih
+                    sebesar-besarnya karena kamu sudah hadir dan menyinari hidupku dengan cara yang paling indah.
+                  </p>
+                  <p class="letter-paragraph">
+                    Melihatmu tersenyum bahagia adalah hal paling menenangkan di duniaku. Setiap doa yang kupanjatkan
+                    hari ini, kupersembahkan untuk kesehatanmu, kebahagiaanmu, dan tercapainya segala impian yang sedang
+                    kamu perjuangkan.
+                  </p>
+                  <p class="letter-paragraph">
+                    Jangan pernah merasa sendirian ya, karena apapun yang terjadi ke depan, aku berjanji akan selalu ada
+                    di sampingmu—untuk memegang tanganmu, merayakan keberhasilanmu, dan memelukmu saat hari terasa
+                    berat.
+                  </p>
+                  <p class="letter-signature">
+                    Dengan segenap cintaku,<br>
+                    <span class="signature-name">Pasanganmu Selamanya ❤️</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="letter-hint mt-3" id="letter-toggle-hint">
+          <i class="fa-solid fa-envelope-open-text"></i> Klik amplop di atas untuk membaca isi surat selengkapnya!
+        </p>
+
+        <div class="slide-nav-buttons mt-4">
+          <button class="btn-romantic ghost-btn" onclick="prevSlide()">
+            <i class="fa-solid fa-arrow-left"></i> Kembali
+          </button>
+          <button class="btn-romantic primary-btn" onclick="nextSlide()">
+            Tiup Lilin Ulang Tahun <i class="fa-solid fa-cake-candles"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 6: MAKE A WISH (INTERACTIVE BIRTHDAY CAKE)
+         ============================================== -->
+    <section class="slide" id="slide-6">
+      <div class="slide-content text-center">
+        <span class="birthday-tag">Make A Special Wish</span>
+        <h2 class="section-title">Tiup Lilinnya & Buat Permintaan 🎂</h2>
+        <p class="subtitle" id="cake-instruction">Tutup matamu sejenak, panjatkan doa terbaikmu, lalu klik atau tiup
+          lilin ini!</p>
+
+        <!-- Birthday Cake with Flickering Candle -->
+        <div class="cake-area" id="cake-area" onclick="blowCandle()">
+          <div class="cake-plate"></div>
+
+          <div class="cake-tier cake-bottom">
+            <div class="frosting-drops">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="cake-tier cake-top">
+            <div class="frosting-drops">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <!-- Candle -->
+          <div class="candle-wrapper" id="candle-wrapper">
+            <div class="candle">
+              <div class="candle-stripe"></div>
+            </div>
+            <div class="candle-flame" id="candle-flame">
+              <div class="flame-inner"></div>
+              <div class="flame-glow"></div>
+            </div>
+            <div class="candle-smoke" id="candle-smoke"></div>
+          </div>
+        </div>
+
+        <!-- Wish Message Box (Appears after blowing) -->
+        <div class="wish-reveal-box" id="wish-reveal-box">
+          <div class="wish-icon-circle">
+            <i class="fa-solid fa-hands-praying"></i>
+          </div>
+          <h3>Aamiin! Semoga Terkabul ✨</h3>
+          <p class="wish-desc">
+            "Semoga panjang umur, selalu diberi kesehatan, dilancarkan rezekinya, dan semua cita-cita besarmu segera
+            terwujud. Aku akan selalu ada untuk mendukung setiap langkahmu!"
+          </p>
+        </div>
+
+        <button class="btn-romantic blow-btn" id="blow-action-btn" onclick="blowCandle()">
+          <i class="fa-solid fa-wind"></i> Tiup Lilin Sekarang!
+        </button>
+
+        <div class="slide-nav-buttons mt-4">
+          <button class="btn-romantic ghost-btn" onclick="prevSlide()">
+            <i class="fa-solid fa-arrow-left"></i> Kembali
+          </button>
+          <button class="btn-romantic primary-btn" onclick="nextSlide()">
+            Kado Terakhir Untukmu <i class="fa-solid fa-gift"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SLIDE 7: FOREVER & ALWAYS + SPECIAL COUPONS
+         ============================================== -->
+    <section class="slide" id="slide-7">
+      <div class="slide-content text-center">
+        <span class="birthday-tag">To Eternity and Beyond</span>
+        <h2 class="section-title">Forever & Always With You 💕</h2>
+        <p class="subtitle">Sebagai penutup kado kecil ini, aku punya voucher spesial yang bisa kamu klaim kapan saja!
+        </p>
+
+        <!-- Love Coupons Grid -->
+        <div class="coupons-grid">
+          <div class="coupon-card" onclick="claimCoupon(this, 'Pelukan Hangat Tanpa Batas')">
+            <div class="coupon-badge">VOUCHER 1</div>
+            <div class="coupon-icon"><i class="fa-solid fa-hands-holding-child"></i></div>
+            <h4>Pelukan Hangat</h4>
+            <p>Berlaku kapanpun kamu butuh tempat bersandar dan pelukan nyaman.</p>
+            <span class="claim-btn">Klaim Sekarang</span>
+          </div>
+
+          <div class="coupon-card" onclick="claimCoupon(this, 'Kencan Makan Makanan Favoritmu')">
+            <div class="coupon-badge">VOUCHER 2</div>
+            <div class="coupon-icon"><i class="fa-solid fa-utensils"></i></div>
+            <h4>Free Date Dinner</h4>
+            <p>Bebas pilih tempat makan dan menu kesukaanmu, aku yang traktir!</p>
+            <span class="claim-btn">Klaim Sekarang</span>
+          </div>
+
+          <div class="coupon-card" onclick="claimCoupon(this, 'Bebas Ngambek & Selalu Benar Seharian')">
+            <div class="coupon-badge">VOUCHER 3</div>
+            <div class="coupon-icon"><i class="fa-solid fa-shield-heart"></i></div>
+            <h4>Kartu Bebas Ngambek</h4>
+            <p>Berlaku seharian penuh! Kamu selalu benar dan bebas minta apa saja.</p>
+            <span class="claim-btn">Klaim Sekarang</span>
+          </div>
+
+          <div class="coupon-card" onclick="claimCoupon(this, 'Jalan-jalan & Jalan Santai Menikmati Sunset')">
+            <div class="coupon-badge">VOUCHER 4</div>
+            <div class="coupon-icon"><i class="fa-solid fa-ice-cream"></i></div>
+            <h4>Ice Cream & Sunset Walk</h4>
+            <p>Jalan santai menikmati senja sambil makan es krim berdua.</p>
+            <span class="claim-btn">Klaim Sekarang</span>
+          </div>
+        </div>
+
+        <!-- Big Hug Button -->
+        <div class="hug-section mt-4">
+          <button class="btn-hug" id="hug-btn" onclick="sendVirtualHug()">
+            <i class="fa-solid fa-heart pulse-fast"></i> Kirim Pelukan Virtual Terhangat!
+          </button>
+          <p class="hug-counter" id="hug-counter-text">Pelukan telah dikirim: <strong>0</strong> kali 💕</p>
+        </div>
+
+        <div class="slide-nav-buttons mt-4">
+          <button class="btn-romantic ghost-btn" onclick="prevSlide()">
+            <i class="fa-solid fa-arrow-left"></i> Kembali
+          </button>
+          <button class="btn-romantic primary-btn" onclick="goToSlide(0)">
+            <i class="fa-solid fa-rotate-right"></i> Ulangi Dari Awal
+          </button>
+        </div>
+
+        <footer class="romantic-footer mt-5">
+          <p>Created with all my heart for my special someone 💖</p>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Navigation Arrows for Desktop -->
+  <button class="nav-arrow nav-prev" id="nav-prev" onclick="prevSlide()" aria-label="Slide Sebelumnya">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <button class="nav-arrow nav-next" id="nav-next" onclick="nextSlide()" aria-label="Slide Selanjutnya">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+
+  <!-- Photo Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+      <img src="" alt="Expanded Memory" id="lightbox-img">
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- Coupon Claim Notification Toast -->
+  <div class="toast-notification" id="toast-notification">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-text">Voucher berhasil diklaim!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+
+</html>
